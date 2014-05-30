@@ -1,10 +1,11 @@
 ﻿open Ferop
+open Ferop.Code
 open Tutorial1
 
 #if DEBUG
-type Native = FeropProvider<"Tutorial1.Native", "bin/Debug">
+type Native = FeropProvider<"Tutorial1.Native", "bin/Debug", Platform.Auto>
 #else
-type Native = FeropProvider<"Tutorial1.Native", "bin/Release">
+type Native = FeropProvider<"Tutorial1.Native", "bin/Release", Platform.Auto>
 #endif
 
 [<EntryPoint>]

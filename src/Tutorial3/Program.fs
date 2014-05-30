@@ -1,5 +1,6 @@
 ﻿open FSharp.Game.Math
 open Ferop
+open Ferop.Code
 open Tutorial3
 
 open System.Runtime.InteropServices
@@ -7,11 +8,11 @@ open System.IO
 open System.Text
 
 #if DEBUG
-type Native = FeropProvider<"Tutorial3.Native", "bin/Debug">
-type Common = FeropProvider<"Common", "bin/Debug">
+type Native = FeropProvider<"Tutorial3.Native", "bin/Debug", Platform.Auto>
+type Common = FeropProvider<"Common", "bin/Debug", Platform.Auto>
 #else
-type Native = FeropProvider<"Tutorial3.Native", "bin/Release">
-type Common = FeropProvider<"Common", "bin/Release">
+type Native = FeropProvider<"Tutorial3.Native", "bin/Release", Platform.Auto>
+type Common = FeropProvider<"Common", "bin/Release", Platform.Auto>
 #endif
 
 let loadShaders () =

@@ -22,7 +22,7 @@ App_Application app;
 
 app.Window = 
     SDL_CreateWindow(
-        title,
+        (const char*)title,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         screenWidth, screenHeight,
@@ -62,7 +62,7 @@ SDL_PollEvent (&e);
 
 switch (e.key.keysym.sym)
 {
-case SDLK_ESCAPE: return true;
+case SDLK_ESCAPE: return GL_TRUE;
 }
 
 return e.type == SDL_QUIT;
