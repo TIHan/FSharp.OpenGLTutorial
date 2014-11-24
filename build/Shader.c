@@ -1,38 +1,13 @@
-﻿namespace Common.Ferop
+#include "Shader.h" 
 
-open Ferop
-
-[<Ferop>]
-[<ClangOsx (
-    "-DGL_GLEXT_PROTOTYPES -I/Library/Frameworks/SDL2.framework/Headers",
-    "-F/Library/Frameworks -framework Cocoa -framework OpenGL -framework IOKit -framework SDL2"
-)>]
-[<GccLinux ("-I../../include/SDL2", "-lSDL2")>]
-#if __64BIT__
-[<MsvcWin (""" /I ..\..\include\SDL2 /I ..\..\include ..\..\lib\win\x64\SDL2.lib ..\..\lib\win\x64\SDL2main.lib ..\..\lib\win\x64\glew32.lib opengl32.lib """)>]
-#else
-[<MsvcWin (""" /I ..\..\include\SDL2 /I ..\..\include ..\..\lib\win\x86\SDL2.lib ..\..\lib\win\x86\SDL2main.lib ..\..\lib\win\x86\glew32.lib opengl32.lib """)>]
-#endif
-[<Header ("""
-#include <stdio.h>
-#if defined(__GNUC__)
-#   include "SDL.h"
-#   include "SDL_opengl.h"
-#else
-#   include "SDL.h"
-#   include <GL/glew.h>
-#   include <GL/wglew.h>
-#endif
-""")>]
-[<Source ("""
 char VertexShaderErrorMessage[65536];
 char FragmentShaderErrorMessage[65536];
 char ProgramErrorMessage[65536];
-""")>]
-module Shader =
-    [<Import; MI (MIO.NoInlining)>]
-    let loadShaders (vertexSource: byte []) (fragmentSource: byte []) : uint32 =
-        C """
+
+
+FEROP_EXPORT uint32_t FEROP_DECL Shader_loadShaders (uint8_t* vertexSource, uint8_t* fragmentSource)
+{
+
 // Create the shaders
 GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
@@ -92,5 +67,5 @@ glDeleteShader(VertexShaderID);
 glDeleteShader(FragmentShaderID);
 
 return ProgramID;
-        """
-
+         
+}

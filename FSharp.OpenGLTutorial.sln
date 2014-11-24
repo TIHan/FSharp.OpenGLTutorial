@@ -1,27 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial1", "src\Tutorial1\Tutorial1.fsproj", "{361B0750-E911-4F1A-BD00-D33BE6919939}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial1", "src\Tutorial1\Tutorial1.fsproj", "{361B0750-E911-4F1A-BD00-D33BE6919939}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial1.Native", "src\Tutorial1.Native\Tutorial1.Native.fsproj", "{55D60BC4-B591-4359-8728-79380A0C019D}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial2", "src\Tutorial2\Tutorial2.fsproj", "{0DA0ED62-989D-441E-B374-A4B6F5848D88}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial2", "src\Tutorial2\Tutorial2.fsproj", "{0DA0ED62-989D-441E-B374-A4B6F5848D88}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial2.Native", "src\Tutorial2.Native\Tutorial2.Native.fsproj", "{0E6533CF-775D-4914-907B-29694AF73CBD}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial2.Native", "src\Tutorial2.Native\Tutorial2.Native.fsproj", "{0E6533CF-775D-4914-907B-29694AF73CBD}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Common", "src\Common\Common.fsproj", "{F863E428-0DC1-4235-B770-154C5AC0A67E}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Common", "src\Common\Common.fsproj", "{F863E428-0DC1-4235-B770-154C5AC0A67E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial3", "src\Tutorial3\Tutorial3.fsproj", "{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial3", "src\Tutorial3\Tutorial3.fsproj", "{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial3.Native", "src\Tutorial3.Native\Tutorial3.Native.fsproj", "{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial3.Native", "src\Tutorial3.Native\Tutorial3.Native.fsproj", "{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial4.Native", "src\Tutorial4.Native\Tutorial4.Native.fsproj", "{E4A9815D-8782-4417-89D9-963F214AF03E}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial4.Native", "src\Tutorial4.Native\Tutorial4.Native.fsproj", "{E4A9815D-8782-4417-89D9-963F214AF03E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial4", "src\Tutorial4\Tutorial4.fsproj", "{938B81F3-0BE4-4EBF-9266-5B1AD04CF84A}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial4", "src\Tutorial4\Tutorial4.fsproj", "{938B81F3-0BE4-4EBF-9266-5B1AD04CF84A}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial5", "src\Tutorial5\Tutorial5.fsproj", "{B7D051D6-1567-4F54-880D-E367CA988902}"
 EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial5", "src\Tutorial5\Tutorial5.fsproj", "{B7D051D6-1567-4F54-880D-E367CA988902}"
-EndProject
-Project("{4925A630-B079-445d-BCD4-3A9C94FE9307}") = "Tutorial5.Native", "src\Tutorial5.Native\Tutorial5.Native.fsproj", "{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial5.Native", "src\Tutorial5.Native\Tutorial5.Native.fsproj", "{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +29,10 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361B0750-E911-4F1A-BD00-D33BE6919939}.Debug|x86.ActiveCfg = Debug|x86
+		{361B0750-E911-4F1A-BD00-D33BE6919939}.Debug|x86.Build.0 = Debug|x86
+		{361B0750-E911-4F1A-BD00-D33BE6919939}.Release|x86.ActiveCfg = Release|x86
+		{361B0750-E911-4F1A-BD00-D33BE6919939}.Release|x86.Build.0 = Release|x86
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Debug|x86.ActiveCfg = Debug|x86
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Debug|x86.Build.0 = Debug|x86
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Release|x86.ActiveCfg = Release|x86
@@ -37,26 +41,22 @@ Global
 		{0E6533CF-775D-4914-907B-29694AF73CBD}.Debug|x86.Build.0 = Debug|Any CPU
 		{0E6533CF-775D-4914-907B-29694AF73CBD}.Release|x86.ActiveCfg = Release|Any CPU
 		{0E6533CF-775D-4914-907B-29694AF73CBD}.Release|x86.Build.0 = Release|Any CPU
-		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Debug|x86.Build.0 = Debug|Any CPU
-		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Release|x86.ActiveCfg = Release|Any CPU
-		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Release|x86.Build.0 = Release|Any CPU
-		{361B0750-E911-4F1A-BD00-D33BE6919939}.Debug|x86.ActiveCfg = Debug|x86
-		{361B0750-E911-4F1A-BD00-D33BE6919939}.Debug|x86.Build.0 = Debug|x86
-		{361B0750-E911-4F1A-BD00-D33BE6919939}.Release|x86.ActiveCfg = Release|x86
-		{361B0750-E911-4F1A-BD00-D33BE6919939}.Release|x86.Build.0 = Release|x86
-		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Debug|x86.Build.0 = Debug|Any CPU
-		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Release|x86.ActiveCfg = Release|Any CPU
-		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Release|x86.Build.0 = Release|Any CPU
-		{55D60BC4-B591-4359-8728-79380A0C019D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{55D60BC4-B591-4359-8728-79380A0C019D}.Debug|x86.Build.0 = Debug|Any CPU
-		{55D60BC4-B591-4359-8728-79380A0C019D}.Release|x86.ActiveCfg = Release|Any CPU
-		{55D60BC4-B591-4359-8728-79380A0C019D}.Release|x86.Build.0 = Release|Any CPU
+		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.Build.0 = Debug|Any CPU
+		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Release|x86.ActiveCfg = Release|Any CPU
+		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Release|x86.Build.0 = Release|Any CPU
 		{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}.Debug|x86.ActiveCfg = Debug|x86
 		{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}.Debug|x86.Build.0 = Debug|x86
 		{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}.Release|x86.ActiveCfg = Release|x86
 		{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}.Release|x86.Build.0 = Release|x86
+		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Debug|x86.Build.0 = Debug|Any CPU
+		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Release|x86.ActiveCfg = Release|Any CPU
+		{17A963D8-2CE1-4B62-B03F-01E3FFAB108C}.Release|x86.Build.0 = Release|Any CPU
+		{E4A9815D-8782-4417-89D9-963F214AF03E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4A9815D-8782-4417-89D9-963F214AF03E}.Debug|x86.Build.0 = Debug|Any CPU
+		{E4A9815D-8782-4417-89D9-963F214AF03E}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4A9815D-8782-4417-89D9-963F214AF03E}.Release|x86.Build.0 = Release|Any CPU
 		{938B81F3-0BE4-4EBF-9266-5B1AD04CF84A}.Debug|x86.ActiveCfg = Debug|x86
 		{938B81F3-0BE4-4EBF-9266-5B1AD04CF84A}.Debug|x86.Build.0 = Debug|x86
 		{938B81F3-0BE4-4EBF-9266-5B1AD04CF84A}.Release|x86.ActiveCfg = Release|x86
@@ -65,14 +65,13 @@ Global
 		{B7D051D6-1567-4F54-880D-E367CA988902}.Debug|x86.Build.0 = Debug|x86
 		{B7D051D6-1567-4F54-880D-E367CA988902}.Release|x86.ActiveCfg = Release|x86
 		{B7D051D6-1567-4F54-880D-E367CA988902}.Release|x86.Build.0 = Release|x86
-		{E4A9815D-8782-4417-89D9-963F214AF03E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E4A9815D-8782-4417-89D9-963F214AF03E}.Debug|x86.Build.0 = Debug|Any CPU
-		{E4A9815D-8782-4417-89D9-963F214AF03E}.Release|x86.ActiveCfg = Release|Any CPU
-		{E4A9815D-8782-4417-89D9-963F214AF03E}.Release|x86.Build.0 = Release|Any CPU
-		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.Build.0 = Debug|Any CPU
-		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Release|x86.ActiveCfg = Release|Any CPU
-		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Release|x86.Build.0 = Release|Any CPU
+		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Debug|x86.Build.0 = Debug|Any CPU
+		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Release|x86.ActiveCfg = Release|Any CPU
+		{4FD7C9BB-5145-4D41-88BD-5CDE235CFECF}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = src\Tutorial1\Tutorial1.fsproj

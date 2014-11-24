@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Numerics.Vectors</name>
+    </assembly>
+    <members>
+        <member name="T:System.Numerics.JITIntrinsicAttribute">
+            <summary>
+            An attribute that can be attached to JIT Intrinsic methods/properties
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Register">
+            <summary>
+            This structs encapsulates  conceptual 'views' for different data types on them.
+            A view is basically a way to look at a SIMD register (which on SSE is 128bit).
+            A SSE SIMD register can be viewed as 16 bytes, 8 shorts (words), 4 Singles (double words)
+            or 2 doubles (quad words). These views are defined in this structure.
+            Diagrammatically a SSE register can be viewed as:
+            SSE bytes:     0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15  
+            Byte view:     b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12 b13 b14 b15
+            8 Word view:   w0    w1    w3    w4    w5    s6      w7      w8
+            4 dword view:  dw0         dw1         dw2           dw3
+            2 qword view:  qw0                     qw1
+            A word is 16 bit in the above representation
+            views are represented by a single fixed sized buffer of appropriate width.    
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Vector`1">
+            <summary>
+            1. A structure that represents a single Vector. The length of this Vector is fixed but CPU register dependent.
+            In other words, this struct abstracts a SIMD register. Number of elements is sizeof(simd-register)/sizeof(T).
+            2. This struct only supports numerical types. This type is intended to be used as a building block for vectorizing
+            large algorithms.
+            3. All operations on this Vector are size independent. The Length property is populated by JIT and all operations defined
+            in this struct are based on Length. The only place we should care about lenght is during initializations and indexing 
+            4. Methods, properties, fields marked as JIT intrinsics would be replaced by JIT as SIMD intrinsics.
+            5. We don't care about alignment for now. First of all, modern hardware doesn’t impose as large an alignment penalty 
+            as used to be the case. Secondly, stack alignment is guaranteed by the JIT and field alignment is something we’ve 
+            specifically scoped out as this would require major changes to the VM. 
+             6. Vector types are immutable as per design.
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.#ctor(`0)">
+             <summary>
+             This constructor initializes each component to <code>value</code>
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.#ctor(`0[],System.Int32)">
+            <summary>
+            This constructor creates a vector from an array. 
+            It copies from index to (index + Vector.Length).
+            </summary>
+            <param name="values">Array containing values</param>
+            <param name="index">start index in the array</param>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.IndexOutOfRangeException">If index is greater than end of the array or index is less than zero 
+            or if there are not enough elements to copy</exception>
+        </member>
+        <member name="M:System.Numerics.Vector`1.#ctor(`0[])">
+            <summary>
+            This constructor can create a vector from arbitary number of values
+            </summary>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.IndexOutOfRangeException">If there are not enough elements to copy</exception>
+        </member>
+        <member name="M:System.Numerics.Vector`1.InitializeRegister(System.Int32,`0[])">
+            <summary>
+            Init method that holds all the initialization code shared across constructors
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            copy the elements of the vector to the destination array starting from
+            an index into the array. If the array does not have enough empty slots, this method
+            throws an exception.
+            This will eventually be a JIT Intrinsic
+            </summary>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If index is greater than end of the array or index is less than zero</exception>
+            <exception cref="T:System.ArgumentException">If number of elements in source vector is greater than those available in destination array</exception>
+        </member>
+        <member name="M:System.Numerics.Vector`1.Equals(System.Numerics.Vector{`0})">
+            <summary>
+            Equals method
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_Addition(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Add operator
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_Subtraction(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            subtract operator 
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_Multiply(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Division operator
+            </summary>
+            <exception cref="T:System.DivideByZeroException">For Integer values when divided by zero</exception>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_Division(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Division operator
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_Inequality(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            inequality operator
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_BitwiseAnd(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            bitwise AND operator
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_BitwiseOr(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            bitwise OR operator
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.op_ExclusiveOr(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            XOR
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.Abs(System.Numerics.Vector{`0})">
+            <summary>
+            Abs function - computes Abs value of each component
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.Min(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Min function - computes min value between each component of two vectors
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.Max(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Max function - computes max value between each component of two vectors
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.DotProduct(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            DotProduct function - computes dot product of two vectors
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.SquareRoot(System.Numerics.Vector{`0})">
+            <summary>
+            SquareRoot function - computes sqaure root of each vector component
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.Equals(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            Equals - compares each component
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.LessThan(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            LessThan (componentwise)
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.GreaterThan(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            GreaterThan (componentwise)
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.GreaterThanOrEqual(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            GreaterThanOrEqual (componentwise)
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.LessThanOrEqual(System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            LessThanOrEqual (componentwise)
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector`1.ConditionalSelect(System.Numerics.Vector{`0},System.Numerics.Vector{`0},System.Numerics.Vector{`0})">
+            <summary>
+            ConditionalSelect (componentwise). Uses the Mask to select appropriate component
+             If ith component in the mask is zero, we select ith component from right otherwise from left
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector`1.One">
+            <summary>
+            A Vector where each component has a value of 1 in the 
+            respective representation
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector`1.Zero">
+            <summary>
+            A Vector with each component has a value of 0 in the
+            respective representation
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector`1.Length">
+            <summary>
+            Number of values of type T the register can hold.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector`1.AllOnes">
+            <summary>
+            Vector with every bit set.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector`1.Item(System.Int32)">
+            <summary>
+            Indexer.
+            This must be used wherever possible to access vector elements since it is an intrinsic
+            </summary>
+        </member>
+        <member name="T:System.Numerics.SR">
+            <summary>
+            A static class that encapsulates methods to perform operations on resources file (.resx)
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Arg_ArgumentOutOfRangeException">
+            <summary>
+              Looks up a localized string similar to Index was out of bounds:.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Arg_ElementsInSourceIsGreaterThanDestination">
+            <summary>
+              Looks up a localized string similar to Number of elements in source vector is greater than the destination array.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Arg_MultiDimArrayNotSupported">
+            <summary>
+              Looks up a localized string similar to Only one-dimensional arrays are supported.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Arg_RegisterLengthOfRangeException">
+            <summary>
+              Looks up a localized string similar to length must be less than.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Strings.Arg_TypeNotSupported">
+            <summary>
+              Looks up a localized string similar to Specified type is not supported.
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Vector2f">
+            <summary>
+            A structure that encapsulates two single precision floating point values and provides hardware accelerated methods.
+            Vector 2f would be a JIT intrinsic.
+            We don't support comparison operators or bitwise operators on fixed vector types
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector2f.#ctor(System.Single)">
+            <summary>
+            Initialize each component to same value
+            </summary>
+            <param name="value">initialization value</param>
+        </member>
+        <member name="M:System.Numerics.Vector2f.#ctor(System.Single,System.Single)">
+            <summary>
+            Initialize each component of the vector
+            </summary>
+            <param name="x">X component</param>
+            <param name="y">Y component</param>
+        </member>
+        <member name="M:System.Numerics.Vector2f.CopyTo(System.Single[],System.Int32)">
+            <summary>
+            this will eventually be a JIT intrinsic
+            </summary>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.RankException">If array is multidimensional</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If index is greater than end of the array or index is less than zero</exception>
+            <exception cref="T:System.ArgumentException">If number of elements in source vector is greater than those available in destination array
+            or if there are not enough elements to copy</exception>
+        </member>
+        <member name="P:System.Numerics.Vector2f.One">
+            <summary>
+            A vector2f where each component has a value of 1.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector2f.Zero">
+            <summary>
+            A vector2f with each component has a value of 0.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector2f.AllOnes">
+            <summary>
+            A Vector2f that represents all ones.
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Vector3f">
+            <summary>
+            A structure that encapsulates three single precision floating point values and provides hardware accelerated methods.
+            Even though the name indicates 3 floating point values, it consumes 128 bits on SSE2 hardware and 256 bits on AVX
+            Vector3f is implemented such that is has 4 float fields but only top three are used.
+            We don't support comparison operators or bitwise operators on fixed vector types
+            </summary>
+        </member>
+        <member name="F:System.Numerics.Vector3f._zero">
+            <summary>
+            Additive identity
+            </summary>
+        </member>
+        <member name="F:System.Numerics.Vector3f._one">
+            <summary>
+            Multiplicative identity
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector3f.#ctor(System.Single)">
+            <summary>
+            This constructor initialized each component to the same value
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector3f.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Initialize each vector component
+            </summary>
+            <param name="x">X component</param>
+            <param name="y">Y component</param>
+            <param name="z">Z component</param>
+        </member>
+        <member name="M:System.Numerics.Vector3f.CopyTo(System.Single[],System.Int32)">
+            <summary>
+            this will eventually be a JIT intrinsic
+            </summary>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.RankException">If array is multidimensional</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If index is greater than end of the array or index is less than zero</exception>
+            <exception cref="T:System.ArgumentException">If number of elements in source vector is greater than those available in destination array</exception>
+        </member>
+        <member name="P:System.Numerics.Vector3f.One">
+            <summary>
+            A Vector3f where each component has a value of 1.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector3f.Zero">
+            <summary>
+            A Vector3f with each component has a value of 0.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector3f.AllOnes">
+            <summary>
+            A Vector2f that represents all ones.
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Vector4f">
+            <summary>
+            A structure that encapsulates four single precision floating point values and provides hardware accelerated methods.
+            Vector 4f would be a JIT intrinsic. 
+            We don't support comparison operators or bitwise operators on fixed vector types
+            </summary>
+        </member>
+        <member name="F:System.Numerics.Vector4f._zero">
+            <summary>
+            Additive identity
+            </summary>
+        </member>
+        <member name="F:System.Numerics.Vector4f._one">
+            <summary>
+            Multiplicative identity
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector4f.#ctor(System.Single)">
+            <summary>
+            This constructor initializes each component to same value
+            </summary>
+        </member>
+        <member name="M:System.Numerics.Vector4f.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Initialize each component of the vector
+            </summary>
+            <param name="w">W component</param>
+            <param name="x">X component</param>
+            <param name="y">Y conponent</param>
+            <param name="z">Z component</param>
+        </member>
+        <member name="M:System.Numerics.Vector4f.CopyTo(System.Single[],System.Int32)">
+            <summary>
+            this will eventually be a JIT intrinsic
+            </summary>
+            <exception cref="T:System.ArgumentNullException">If array is null</exception>
+            <exception cref="T:System.RankException">If array is multidimensional</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">If index is greater than end of the array or index is less than zero</exception>
+            <exception cref="T:System.ArgumentException">If number of elements in source vector is greater than those available in destination array</exception>
+        </member>
+        <member name="P:System.Numerics.Vector4f.One">
+            <summary>
+            A Vector4f where each component has a value of 1.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector4f.Zero">
+            <summary>
+            A Vector4f with each component has a value of 0.0f
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Vector4f.AllOnes">
+            <summary>
+            A vector4f that represents all ones.
+            </summary>
+        </member>
+        <member name="T:System.Numerics.VectorHelper">
+            <summary>
+            This class contains some helper methods for generic and fixed type vectors.
+            The intent of this class is to allow for code sharing and in cases where it is not trivial to keep
+             similar implementations of the same method localized (for generic and fixed type vectors).
+            </summary>
+        </member>
+        <member name="T:System.Numerics.VectorMath">
+            <summary>
+            This class includes Math functions to operate on generic and static type vectors
+            all the math functions are JIT intrinsics.
+            JIT looks into this class for methods to replace with Intrinsics
+            </summary>
+        </member>
+        <member name="T:System.Numerics.Vector">
+            <summary>
+            This class includes the Conditional Select and Comparison methods
+            Putting these methods in an non-generic class allows the compiler to infer types
+            Also, these operations operate over multiple types and there might not be a logical home for them.
+            Having them in a single type allows better grouping than multiple types. It's a lot easier for the
+            developer if they appear as overloads on a single type as opposed to having to hunt down their
+            location.
+            </summary>
+        </member>
+    </members>
+</doc>
