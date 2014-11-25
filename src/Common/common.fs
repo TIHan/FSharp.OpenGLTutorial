@@ -131,17 +131,25 @@ App_Application app;
 
 app.Window = 
     SDL_CreateWindow(
-        (const char*)title,
+        "Ferop.Sample",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        screenWidth, screenHeight,
-        SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
+        900, 900,
+        SDL_WINDOW_OPENGL);
 
 SDL_GL_SetAttribute (SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 SDL_GL_SetAttribute (SDL_GL_CONTEXT_MINOR_VERSION, 2);
 SDL_GL_SetAttribute (SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 app.GLContext = SDL_GL_CreateContext ((SDL_Window*)app.Window);
+SDL_GL_SetSwapInterval (0);
+
+#if defined(__GNUC__)
+#else
+glewExperimental = GL_TRUE;
+glewInit ();
+#endif
+
 return app;
         """
 
@@ -180,4 +188,3 @@ case SDLK_ESCAPE: return GL_TRUE;
 
 return e.type == SDL_QUIT;
         """
-

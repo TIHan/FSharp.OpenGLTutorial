@@ -12,7 +12,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\..\build\</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\..\build\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <PlatformTarget>x86</PlatformTarget>
     <Externalconsole>true</Externalconsole>
@@ -51,13 +51,14 @@
     <Reference Include="Ferop">
       <HintPath>..\..\lib\Ferop.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\Tutorial2.Native\Tutorial2.Native.fsproj">
-      <Project>{0E6533CF-775D-4914-907B-29694AF73CBD}</Project>
-      <Name>Tutorial2.Native</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Common\Common.fsproj">
       <Project>{F863E428-0DC1-4235-B770-154C5AC0A67E}</Project>
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /f "$(ProjectDir)..\..\lib\win\$(PlatformName)\SDL2.dll" "$(TargetDir)" /q /y
+xcopy /f "$(ProjectDir)..\..\lib\win\$(PlatformName)\glew32.dll" "$(TargetDir)" /q /y</PostBuildEvent>
+  </PropertyGroup>
+  <Import Project="..\..\lib\build\Ferop.targets" Condition="Exists('..\..\lib\build\Ferop.targets')" />
 </Project>

@@ -7,8 +7,6 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial1", "src\Tutorial1\
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial2", "src\Tutorial2\Tutorial2.fsproj", "{0DA0ED62-989D-441E-B374-A4B6F5848D88}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial2.Native", "src\Tutorial2.Native\Tutorial2.Native.fsproj", "{0E6533CF-775D-4914-907B-29694AF73CBD}"
-EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Common", "src\Common\Common.fsproj", "{F863E428-0DC1-4235-B770-154C5AC0A67E}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Tutorial3", "src\Tutorial3\Tutorial3.fsproj", "{8044D3A9-EDF2-4E6C-8B79-56A2CFC80876}"
@@ -37,10 +35,6 @@ Global
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Debug|x86.Build.0 = Debug|x86
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Release|x86.ActiveCfg = Release|x86
 		{0DA0ED62-989D-441E-B374-A4B6F5848D88}.Release|x86.Build.0 = Release|x86
-		{0E6533CF-775D-4914-907B-29694AF73CBD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{0E6533CF-775D-4914-907B-29694AF73CBD}.Debug|x86.Build.0 = Debug|Any CPU
-		{0E6533CF-775D-4914-907B-29694AF73CBD}.Release|x86.ActiveCfg = Release|Any CPU
-		{0E6533CF-775D-4914-907B-29694AF73CBD}.Release|x86.Build.0 = Release|Any CPU
 		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Debug|x86.Build.0 = Debug|Any CPU
 		{F863E428-0DC1-4235-B770-154C5AC0A67E}.Release|x86.ActiveCfg = Release|Any CPU
