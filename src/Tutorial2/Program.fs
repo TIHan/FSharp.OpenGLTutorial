@@ -1,37 +1,16 @@
-﻿open FSharp.Game.Math
-open Ferop
-open Ferop.Code
-open Tutorial2
-
-open System.Runtime.InteropServices
+﻿open System.Runtime.InteropServices
 open System.IO
 open System.Text
 
-#if DEBUG
-type Native = FeropProvider<"Tutorial2.Native", "bin/Debug", Platform.Auto>
-type Common = FeropProvider<"Common", "bin/Debug", Platform.Auto>
-#else
-type Native = FeropProvider<"Tutorial2.Native", "bin/Release", Platform.Auto>
-type Common = FeropProvider<"Common", "bin/Release", Platform.Auto>
-#endif
+open FSharp.Game.Math
+open Common.Ferop
 
 let loadShaders () =
     let vertexSource = Encoding.ASCII.GetBytes (File.ReadAllText "SimpleVertexShader.vertexshader")
     let fragmentSource = Encoding.ASCII.GetBytes (File.ReadAllText "SimpleFragmentShader.fragmentshader")
 
-    let vh = GCHandle.Alloc (vertexSource, GCHandleType.Pinned)
-    let fh = GCHandle.Alloc (fragmentSource, GCHandleType.Pinned)
-
-    let vp = vh.AddrOfPinnedObject ()
-    let fp = fh.AddrOfPinnedObject ()
-
     // Create and compile our GLSL program from the shaders
-    let programId = Common.Shader.loadShaders (vp, fp)
-
-    vh.Free ()
-    fh.Free ()
-
-    programId
+    Shader.loadShaders vertexSource fragmentSource
 
 let generateVBO (data: single[]) (app: Application) =
     let dh = GCHandle.Alloc (data, GCHandleType.Pinned)
